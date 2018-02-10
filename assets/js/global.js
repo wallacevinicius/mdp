@@ -2,7 +2,7 @@ $('body').on('submit', '#form', function(e){
 	e.preventDefault();
 	var formData = new FormData($(this)[0]);
 	$.ajax({
-		url : "./upload.php",
+		url : "./assets/scripts/upload.php",
 		type: "POST",
 		processData: false,
 		contentType: false,

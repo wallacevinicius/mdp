@@ -2,7 +2,10 @@
   header('Content-type: text/json');
   $json = array();
 
-  $dir_random = 'data/' . $_REQUEST['folder']; 
+  $dir_random = '../../data/' . $_REQUEST['folder']; 
+
+  // Tamanho do arquivo para upload em MB
+  $fileSizeMB = 20 ;
 
   if ( !(is_dir($dir_random)) ){
     mkdir( $dir_random , 0700 );
@@ -10,12 +13,16 @@
 
   // Pasta onde o arquivo vai ser salvo
   $_UP['pasta'] = $dir_random . '/';
+  
   // Tamanho máximo do arquivo (em Bytes)
-  $_UP['tamanho'] = 1024 * 1024 * 20; // 20Mb
+  $_UP['tamanho'] = 1024 * 1024 * $fileSizeMB; // MB
+  
   // Array com as extensões permitidas
   $_UP['extensoes'] = array('tsv');
+  
   // Renomeia o arquivo? (Se true, o arquivo será salvo como .tsv e um nome único)
   $_UP['renomeia'] = false;
+  
   // Array com os tipos de erros de upload do PHP
   $_UP['erros'][0] = 'Não houve erro';
   $_UP['erros'][1] = 'O arquivo no upload é maior do que o limite do PHP';
@@ -23,6 +30,9 @@
   $_UP['erros'][3] = 'O upload do arquivo foi feito parcialmente';
   $_UP['erros'][4] = 'Não foi feito o upload do arquivo';
  
+  /*
+  EXPRESSIONDATA UPLOAD
+  */
   if ( $_FILES['expressionData']['size'] != 0 ) {
 
     // Verifica se houve algum erro com o upload. Se sim, exibe a mensagem do erro
@@ -45,11 +55,12 @@
     }
 
     // Faz a verificação do tamanho do arquivo
-    if ($_UP['tamanho'] < $_FILES['expressionData']['size']) {
-      $json['error'] = "O arquivo enviado é muito grande, envie arquivos de até 2Mb.";
+    if ($_FILES['expressionData']['size'] > $_UP['tamanho']){
+      $json['error'] = "O arquivo enviado é muito grande, envie arquivos de até " . $fileSizeMB . ".";
       echo json_encode($json);
       exit; // Para a execução do script
     }
+
     // O arquivo passou em todas as verificações, hora de tentar movê-lo para a pasta
     // Primeiro verifica se deve trocar o nome do arquivo
     if ($_UP['renomeia'] == true) {
@@ -63,7 +74,6 @@
     // Depois verifica se é possível mover o arquivo para a pasta escolhida
     if (move_uploaded_file($_FILES['expressionData']['tmp_name'], $_UP['pasta'] . $nome_final)) {
       // Upload efetuado com sucesso
-      
     } else {
       // Não foi possível fazer o upload, provavelmente a pasta está incorreta
       $json['error'] = "Não foi possível enviar o arquivo, tente novamente";
@@ -72,7 +82,9 @@
     }
   }
 
-
+  /*
+  PHENOTYPICDATA UPLOAD
+  */
   if ( $_FILES['phenotypicData']['size'] != 0 ) {
 
     // Verifica se houve algum erro com o upload. Se sim, exibe a mensagem do erro
@@ -95,8 +107,8 @@
     }
 
     // Faz a verificação do tamanho do arquivo
-    if ($_UP['tamanho'] < $_FILES['phenotypicData']['size']) {
-      $json['error'] = "O arquivo enviado é muito grande, envie arquivos de até 2Mb.";
+    if ($_FILES['phenotypicData']['size'] > $_UP['tamanho']) {
+      $json['error'] = "O arquivo enviado é muito grande, envie arquivos de até " . $fileSizeMB . ".";
       echo json_encode($json);
       exit; // Para a execução do script
     }
