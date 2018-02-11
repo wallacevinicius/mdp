@@ -52,8 +52,7 @@
 				<form enctype="multipart/form-data" id="form" method="_POST">	
 
 					<?php $GLOBALS['DIR_RANDOM'] = md5(date('Y-m-d H:i:s.') . gettimeofday()['usec']) ; ?>
-
-					<input type="hidden" name="folder" value="<?php echo $DIR_RANDOM ?>">
+					<input type="hidden" name="exec" value="<?php echo $DIR_RANDOM ?>">
 
 					<h3><i class="fa fa-file-text-o" aria-hidden="true"></i>
  Inputs</h3>
@@ -81,7 +80,11 @@
 						
 						<small id="dataHelp" class="form-text text-muted"><a href="example/GSE19439_pdata.tsv" download>Click here</a> to see a example</small>
 					</div>
+				</form>
+				
+				<form enctype="multipart/form-data" id="formData" method="_POST" action="assets/scripts/plot.php">
 
+					<input type="hidden" name="exec" value="<?php echo $DIR_RANDOM ?>">
 
 					<div class="form-group bottomSpace">
 						<label for="param">Select the parameter</label>
@@ -129,6 +132,7 @@
 					</div>
 
 					<input type="submit" class="btn btn-primary" value="Create plot">									
+
 				</form>
 			</div>
 

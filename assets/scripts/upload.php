@@ -2,7 +2,7 @@
   header('Content-type: text/json');
   $json = array();
 
-  $dir_random = '../../data/' . $_REQUEST['folder']; 
+  $dir_random = '../../data/' . $_REQUEST['exec']; 
 
   // Tamanho do arquivo para upload em MB
   $fileSizeMB = 20 ;
@@ -21,7 +21,7 @@
   $_UP['extensoes'] = array('tsv');
   
   // Renomeia o arquivo? (Se true, o arquivo será salvo como .tsv e um nome único)
-  $_UP['renomeia'] = false;
+  $_UP['renomeia'] = true;
   
   // Array com os tipos de erros de upload do PHP
   $_UP['erros'][0] = 'Não houve erro';
@@ -65,7 +65,8 @@
     // Primeiro verifica se deve trocar o nome do arquivo
     if ($_UP['renomeia'] == true) {
       // Cria um nome baseado no UNIX TIMESTAMP atual e com extensão .tsv
-      $nome_final = md5(time()).'.tsv';
+      //$nome_final = md5(time()).'.tsv';
+      $nome_final = 'edata.tsv';
     } else {
       // Mantém o nome original do arquivo
       $nome_final = $_FILES['expressionData']['name'];
@@ -116,7 +117,8 @@
     // Primeiro verifica se deve trocar o nome do arquivo
     if ($_UP['renomeia'] == true) {
       // Cria um nome baseado no UNIX TIMESTAMP atual e com extensão .tsv
-      $nome_final = md5(time()).'.tsv';
+      //$nome_final = md5(time()).'.tsv';
+      $nome_final = 'pdata.tsv';
     } else {
       // Mantém o nome original do arquivo
       $nome_final = $_FILES['phenotypicData']['name'];
