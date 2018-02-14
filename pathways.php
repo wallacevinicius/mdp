@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+su<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -36,7 +36,7 @@
 			</nav>
 
 			<div id="slide">
-				<h1>Run (All genes)</h1>
+				<h1>Run (Pathways)</h1>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur numquam reiciendis odio accusantium voluptatem minus iste ratione, quod, maxime excepturi debitis dicta sint sed omnis fugit laudantium rem ad non!</p>
 			</div>
 			<div id="baseButtons">
@@ -49,7 +49,7 @@
 	  				To show all plots you have to <b>upload</b> the input files
 				</div>
 
-				<form enctype="multipart/form-data" id="formUpload" method="_POST">	
+				<form enctype="multipart/form-data" id="formUpload" method="_POST">
 
 					<?php $GLOBALS['DIR_RANDOM'] = md5(date('Y-m-d H:i:s.') . gettimeofday()['usec']) ; ?>
 					<input type="hidden" name="exec" value="<?php echo $DIR_RANDOM ?>">
@@ -80,21 +80,30 @@
 						
 						<small id="dataHelp" class="form-text text-muted"><a href="example/GSE19439_pdata.tsv" download>Click here</a> to see a example</small>
 					</div>
-				</form>
-				
-				<!-- FORM WITH OPTION POST PER JS -->
-				<!-- <form enctype="multipart/form-data" id="formData" method="_POST"> -->
 
-				<form enctype="multipart/form-data" id="formData" method="_POST" action="assets/scripts/plot.php">
-
-					<input type="hidden" name="exec" value="<?php echo $DIR_RANDOM ?>">
-
-					<div class="form-group bottomSpace">
+					<div class="form-group bottom">
 						<label for="param">Select the parameter</label>
 						<select class="form-control" name="class" id="param">
 							<option>Upload some file in Phenotypic Data</option>
 						</select>
 					</div>
+
+					<div class="form-group">
+						<label for="gmt">Pathways gmt file</label>
+						<div class="baseFile">
+							<input type="file" name="pathwaysGMT" class="form-control-file" id="pathwaysGMT" accept=".gmt">
+							<div class="buttonFile">Browser</div>
+							<span>Select or drag a file here</span>
+						</div>
+						<small id="dataHelp" class="form-text text-muted"><a href="example/cellspecific_modules_extended.gmt"  download>Click here</a> to see a example</small>
+					</div>
+
+					<div class="form-group bottomSpace">
+						<label for="param2">Select the parameter</label>
+						<select class="form-control" name="class2" id="param2">
+							<option>Upload some file in Pathways GMT File</option>
+						</select>
+					</div>										
 
 					<h3><i class="fa fa-list" aria-hidden="true"></i> Parameters</h3>
 					<p>Select the parameters that the inputs ask you</p>
@@ -114,28 +123,8 @@
 							<option>3</option>
 						</select>
 					</div>						
-					<div class="form-group">
-						<label for="pertubed">Top perturbed genes (<i class="fa fa-percent" aria-hidden="true"></i>)</label>
-						<select class="form-control" name="average" id="pertubed">
-							<option>0.05</option>
-							<option>0.1</option>
-							<option>0.15</option>
-							<option>0.2</option>
-							<option>0.25</option>
-							<option>0.30</option>
-							<option>0.35</option>
-							<option>0.40</option>
-							<option>0.45</option>
-							<option>0.50</option>						
-							<option>0.55</option>
-							<option>0.6</option>
-							<option>0.65</option>
-							<option>0.7</option>
-						</select>
-					</div>
 
 					<input type="submit" class="btn btn-primary" value="Create plot">									
-
 				</form>
 			</div>
 
