@@ -1,3 +1,3 @@
-<a href="index" class="buttonsCreate"><i class="fa fa-list-alt" aria-hidden="true"></i> Run (All genes)</a>
+<a href="/" class="buttonsCreate"><i class="fa fa-list-alt" aria-hidden="true"></i> Run (All genes)</a>
 	<div class="separate"></div>
-<a href="pathways" class="buttonsCreate"><i class="fa fa-list-alt" aria-hidden="true"></i> Run (Pathways)</a>
+<a href="/pages/pathways" class="buttonsCreate"><i class="fa fa-list-alt" aria-hidden="true"></i> Run (Pathways)</a>

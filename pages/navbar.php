@@ -1,6 +1,6 @@
 <li class="nav-item">
-	<a class="btn btn-outline-primary" href="about">About</a>
+	<a class="btn btn-outline-primary" href="/pages/about">About</a>
 </li>
 <li class="nav-item">
-	<a class="btn btn-outline-primary" href="tutorial">Tutorial</a>
+	<a class="btn btn-outline-primary" href="/pages/tutorial">Tutorial</a>
 </li>	
