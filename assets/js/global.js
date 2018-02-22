@@ -1,13 +1,17 @@
-$('body').on('submit', '#formUpload', function(e){
+$('#formUpload').submit(function(e){
 	e.preventDefault();
-	var formData = new FormData($(this)[0]);
+	var formData = new FormData(this);
+	for (var pair of formData.entries()) {
+		console.log(pair[0] + " = " + pair[1]);
+	}
 	$.ajax({
-		url : "./assets/scripts/upload.php",
+		url : "./assets/scripts/teste.php",
 		type: "POST",
 		processData: false,
 		contentType: false,
 		data: formData,
 		success: function(data){
+			console.info(data);
 			if (data.error) {
 				console.info(data.error);
 
@@ -41,16 +45,26 @@ $('body').on('submit', '#formUpload', function(e){
 					});
 				}
 			}
-		}
+		},
+		error: function(data) {
+			$("body").html(data.responseText);
+		}	
 	});
 });
+
+pendingUpload = [];
 
 $('input[type=file]').change(function(){
 	var a = $(this),
 		b = a.val(),
-		c = b.substr(b.lastIndexOf('\\') + 1);
+		c = b.substr(b.lastIndexOf('\\') + 1),
+		d = a.attr("name");
 	a.next().next().html(c);
-	$('#formUpload').submit();
+	if (typeof(pendingUpload[d]) == "undefined") {
+		pendingUpload.push(d);
+	}
+	console.log(pendingUpload.length);
+	if (pendingUpload.length == a.data("number")) $('#formUpload').submit();
 });
 
 /* 

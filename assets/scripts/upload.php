@@ -2,6 +2,9 @@
   header('Content-type: text/json');
   $json = array();
 
+  var_dump($_POST);
+  var_dump($_FILES);
+
   $dir_random = '../../data/' . $_REQUEST['exec']; 
 
   // Tamanho do arquivo para upload em MB

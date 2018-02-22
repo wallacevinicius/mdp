@@ -90,7 +90,7 @@ a:link {
 	height: 15px;
 	float: left;
 	position: absolute;
-	margin: -32px 147px;
+	margin: -32px 167px;
 }
 
 #base #forms {
@@ -179,6 +179,7 @@ form a {
 
 .btn-primary {
     background-color: rgb(50,156,208);
+    border: 1px solid rgb(40,125,166);
     padding: 10px 20px;
     color: white;
     text-transform: uppercase;
@@ -186,6 +187,18 @@ form a {
     font-weight: bold;
     font-size: 12px;
     cursor: pointer;
+}
+
+.btn-primary:hover {
+	background-color: rgb(40,125,166);
+	border: 1px solid rgb(40,125,166);
+}
+
+.btn-primary:not([disabled]):not(.disabled).active, .btn-primary:not([disabled]):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+	color: #fff;
+    background-color: rgb(40,125,166);
+    border-color: rgb(40,125,166);
+    box-shadow: 0 0 0 0.2rem rgba(50,156,208,.5);
 }
 
 #base .baseFile {
