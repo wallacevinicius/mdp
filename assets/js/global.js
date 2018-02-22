@@ -14,32 +14,23 @@ $('#formUpload').submit(function(e){
 			console.info(data);
 			if (data.error) {
 				console.info(data.error);
-
 				if ( $("#phenotypicData").val() ) {
 					$("#param").append("<option>Select</option>");
 				}
-
 				if ( $("#pathwaysGMT").val() ) {
 					$("#param2").append("<option>Select</option>");
 				}
-
 				console.log( data );
-
 			} else if (data.classes) {
-
 				console.log( data );
-
 				if ( $("#phenotypicData").val() ) {
 					$("#param").html("");
-
 					$.each(data.classes, function() {
 						$("#param").append("<option>"+this+"</option>");
 					});
 				}
-
 				if ( $("#pathwaysGMT").val() ) {
 					$("#param2").html("");
-
 					$.each(data.classes, function() {
 						$("#param2").append("<option>"+this+"</option>");
 					});
