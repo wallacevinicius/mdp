@@ -5,7 +5,7 @@ $('#formUpload').submit(function(e){
 		console.log(pair[0] + " = " + pair[1]);
 	}
 	$.ajax({
-		url : "./assets/scripts/teste.php",
+		url : "./assets/scripts/upload.php",
 		type: "POST",
 		processData: false,
 		contentType: false,
